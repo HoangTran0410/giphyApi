@@ -79,7 +79,7 @@ window.onload = function(){
 	var imgBox = document.getElementById('imgArea');
 	imgBox.addEventListener('scroll', function(event){
 	    var element = event.target;
-	    if (element.scrollHeight - element.scrollTop >= element.clientHeight-100){
+	    if (element.scrollHeight - element.scrollTop >= element.clientHeight-300){
 	    	var x = document.getElementById('inputS').value;
 	    	var type = "";
 	    	switch(searchType()){
