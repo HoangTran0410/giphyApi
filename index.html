@@ -5,24 +5,33 @@
 	<meta charset="utf-8">
 
 	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 	<script type="text/javascript" src="library/p5.min.js"></script>
 	<script type="text/javascript" src="js/sketch.js"></script>
 
 </head> 
 
 <body>
-	<div>
-		<select title="Change type search" onchange="changeImage()">
+	<div id="searchArea">
+		<select id="sType" title="Change type search" onchange="changeImage()">
 			<option value="gifs/search?">Search Gifs</option>
 		    <option value="stickers/search?">Search Stickers</option>
 		    <option value="gifs/trending?">Trending Gifs</option>
 		    <option value="stickers/trending?">Trending Stickers</option>
 		</select>
 
-		<input onchange="changeImage()" type="search" placeholder="Search Giphy"> 
+		<input id="inputS" onchange="changeImage()" type="search" placeholder="Search Giphy">
+
+		<button id="searchBut" onclick="changeImage()">Search</button>
+
+		<button id="aboutBut" title="My Facebook" onclick="about()">About Me</button>
 	</div>
-	<br>
+
+	<div id="imgArea">
+	</div>
 
 </body>
 
 </html>
+
+
