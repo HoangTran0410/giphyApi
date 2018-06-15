@@ -84,7 +84,7 @@ window.onload = function(){
 	    	var type = "";
 	    	switch(searchType()){
 	    		case "gifs/search?": type = "gifs"; break;
-	    		case "stickers/search?": type = "stickers"; break;
+	    		// case "stickers/search?": type = "stickers"; break;
 	    	}
 	    	if(type != "") addRandom(x, type);
 	    }
