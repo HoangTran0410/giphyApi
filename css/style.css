@@ -1,0 +1,55 @@
+select {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    height : 30px;
+    font-size: 16px;
+    font-family: Consolas;
+    color : #FFFFFF;
+    background-color: #666666;
+}
+
+input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height : 30px;
+    border: none;
+    padding: none;
+    text-align: center;
+    font-size: 16px;
+    font-family: Consolas;
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+img {
+	display: inline-table;
+    width: 150px;
+    height: 150px;
+
+    border: none;
+	border-radius: 4px;
+
+	transition-duration: 0.1s;
+    opacity: 0.65;
+    transform: scale(0.9);
+}
+
+img:hover {
+    opacity: 1;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
+    transform: scale(1.05);
+}
+
+img:active {
+	box-shadow: none;
+}
+
+body {
+    background-color: #555555;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+}

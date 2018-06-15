@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Demo HTML game </title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="library/p5.min.js"></script>
+	<script type="text/javascript" src="js/sketch.js"></script>
+
+</head> 
+
+<body>
+	<div>
+		<select title="Change type search">
+			<option value="gifs/search?">Search Gifs</option>
+		    <option value="stickers/search?">Search Stickers</option>
+		    <option value="gifs/trending?">Trending Gifs</option>
+		    <option value="stickers/trending?">Trending Stickers</option>
+		</select>
+
+		<input onchange="changeImage()" type="search" placeholder="Search Giphy"> 
+	</div>
+	<br>
+
+</body>
+
+</html>
+
+
