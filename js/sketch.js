@@ -25,19 +25,18 @@ function addImage(title, preview, giflink){
 	links.push({"image":preview, "giphy":giflink});
 }
 
-function setBg(bg){
-	var b = document.getElementsByTagName('body')[0];
-	b.style.backgroundImage = "url("+bg+")";
+function searchType(){
+	return document.getElementsByTagName('select')[0].selectedOptions[0].value;
 }
 
 function searchGiphy(giphyName){
 	var query = "&q="+giphyName;
 	var limit = "&limit=" + 25;
-	var url = api+"gifs/search?"+apiKey+limit+query;
+	var url = api+searchType()+apiKey+limit+query;
 	loadJSON(url, function(giphys){
 		console.log(giphys);
 		if(giphys.data.length < 1){
-			window.alert("dont have data for this giphy name");
+			window.alert("Dont have data for this giphy name");
 		
 		} else {
 			deleteImage();
@@ -62,6 +61,11 @@ function deleteImage(){
 		imas[i].parentNode.removeChild(imas[i]);
 	}
 }
+
+// function setBg(bg){
+	// 	var b = document.getElementsByTagName('body')[0];
+	// 	b.style.backgroundImage = "url("+bg+")";
+	// }
 
 // (function(){
 	// 	var allImage = document.getElementsByClassName("rg_ic rg_i");
