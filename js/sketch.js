@@ -21,12 +21,12 @@ function addImage(title, preview, giflink){
 		newImage.onmouseover = function(e){
 
 		}
-	document.body.appendChild(newImage);
+	document.getElementById("imgArea").appendChild(newImage);
 	links.push({"image":preview, "giphy":giflink});
 }
 
 function searchType(){
-	return document.getElementsByTagName('select')[0].selectedOptions[0].value;
+	return document.getElementById('sType').selectedOptions[0].value;
 }
 
 function searchGiphy(giphyName){
@@ -34,7 +34,6 @@ function searchGiphy(giphyName){
 	var limit = "&limit=" + 25;
 	var url = api+searchType()+apiKey+limit+query;
 	loadJSON(url, function(giphys){
-		console.log(giphys);
 		if(giphys.data.length < 1){
 			window.alert("Dont have data for this giphy name");
 		
@@ -42,15 +41,25 @@ function searchGiphy(giphyName){
 			deleteImage();
 			for(var i = 0; i < giphys.data.length; i++){
 				addImage(giphys.data[i].title,
-						giphys.data[i].images.fixed_width_small.url,
+						giphys.data[i].images.fixed_height_small.url,
 						giphys.data[i].images.original.url);
 			}
 		}
 	});
 }
 
+function addRandom(giphyName, type){
+	var tag = "&tag="+giphyName;
+	var url = api+type+"/random?"+apiKey+tag;
+	loadJSON(url, function(giphys){
+		addImage(giphys.data.title,
+				giphys.data.fixed_height_small_url,
+				giphys.data.image_original_url);
+	});
+}
+
 function changeImage(){
-	var x = document.getElementsByTagName("input")[0].value;
+	var x = document.getElementById('inputS').value;
 	if(x != "") searchGiphy(x);
 }
 
@@ -60,6 +69,26 @@ function deleteImage(){
 	for(var i = imas.length-1; i >= 0 ; i--){
 		imas[i].parentNode.removeChild(imas[i]);
 	}
+}
+
+function about(){
+	window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');
+}
+
+window.onload = function(){
+	var imgBox = document.getElementById('imgArea');
+	imgBox.addEventListener('scroll', function(event){
+	    var element = event.target;
+	    if (element.scrollHeight - element.scrollTop >= element.clientHeight-100){
+	    	var x = document.getElementById('inputS').value;
+	    	var type = "";
+	    	switch(searchType()){
+	    		case "gifs/search?": type = "gifs"; break;
+	    		case "stickers/search?": type = "stickers"; break;
+	    	}
+	    	if(type != "") addRandom(x, type);
+	    }
+	});
 }
 
 // function setBg(bg){
