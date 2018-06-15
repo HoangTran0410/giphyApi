@@ -1,7 +1,7 @@
 /*
 http://api.giphy.com/v1/gifs/search?q=coding%20train&api_key=dc6zaTOxFJmzC&limit=5
 */
-var api = "http://api.giphy.com/v1/";
+var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
 var links = [];
 
