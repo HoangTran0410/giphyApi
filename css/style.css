@@ -1,55 +1,110 @@
+/*=========== Search Tool ==========*/
+#searchArea {
+    top: 5px;
+    left: 0px;
+    position: fixed;
+    z-index: 2;
+}
+
 select {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     border: none;
-    height : 30px;
+    padding: none;
+    height : 40px;
+    border-radius: 5px;
     font-size: 16px;
     font-family: Consolas;
     color : #FFFFFF;
-    background-color: #666666;
+    background-color: #222222;
+}
+select:hover {
+    background-color: #444444;
+    cursor: pointer;
 }
 
 input {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height : 30px;
     border: none;
     padding: none;
+    height : 40px;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Consolas;
     color: #FFFFFF;
-    background-color: #000000;
+    background-color: #111111;
+}
+input:hover {
+    background-color: #222222;   
+}
+
+/*=========== Button ============*/
+button {
+    border: none;
+    padding: none;
+    height : 40px;
+    text-align: center;
+    font-size: 18px;
+    font-family: Consolas;
+    color: #999999;
+    background-color: #111111;
+    /*border-radius: 5px;*/
+}
+
+button:hover {
+    color: #111111;
+    background-color: #999999;
+    cursor: pointer;
+}
+
+#aboutBut {
+    font-size: 16px;
+    position: fixed;
+    right: 5px;
+    top: 5px;
+}
+
+/*=========== Image Grid ============*/
+#imgArea {
+    top: 47px;
+    bottom: 0px;
+    left: 0px;
+    right: -17px;
+    position: absolute;
+    background-color: #222222;
+    overflow-y: scroll;
 }
 
 img {
-	display: inline-table;
-    width: 150px;
-    height: 150px;
-
+	display: grid;
+    height: : 25%;
+    min-height: 150px;
+    float: left;
     border: none;
 	border-radius: 4px;
-
-	transition-duration: 0.1s;
     opacity: 0.65;
+    transition-duration: 0.1s;
     transform: scale(0.9);
 }
 
 img:hover {
     opacity: 1;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
     transform: scale(1.05);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
 }
 
 img:active {
 	box-shadow: none;
 }
 
+/*=========== Background ============*/
+
 body {
-    background-color: #555555;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-attachment: fixed;
+    background-color: #000000;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
