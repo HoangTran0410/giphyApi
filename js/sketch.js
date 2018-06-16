@@ -76,19 +76,30 @@ function about(){
 }
 
 window.onload = function(){
-	var imgBox = document.getElementById('imgArea');
-	imgBox.addEventListener('scroll', function(event){
+	// add more gifs when scroll
+	var imgArea = document.getElementById('imgArea');
+	imgArea.addEventListener('scroll', function(event){
 	    var element = event.target;
 	    if (element.scrollHeight - element.scrollTop >= element.clientHeight-300){
 	    	var x = document.getElementById('inputS').value;
 	    	var type = "";
-	    	switch(searchType()){
-	    		case "gifs/search?": type = "gifs"; break;
-	    		// case "stickers/search?": type = "stickers"; break;
-	    	}
+	    	if(searchType() == "gifs/search?") type = "gifs";
 	    	if(type != "") addRandom(x, type);
 	    }
 	});
+
+	//set height
+	var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+	var searchArea = document.getElementById('searchArea');
+		searchArea.style.setProperty("height", Math.floor(1/15*w)+"px");
+	var child = searchArea.children;
+	for(var i = 0; i < child.length; i++)
+		child[i].style.setProperty("height", Math.floor(1/15*w)+"px");
+
+	imgArea = document.getElementById('imgArea');
+	imgArea.style.setProperty("top", Math.floor(1/15*w+10)+"px");
 }
 
 // function setBg(bg){
