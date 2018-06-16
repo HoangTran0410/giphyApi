@@ -65,7 +65,7 @@
 }
 
 #imgArea img {
-    min-width: 100%;
+    width: 100%;
     float: top;
     border: none;
 	border-radius: 4px;
@@ -82,30 +82,18 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
 }
 
-#imgArea img:active {
-	box-shadow: none;
-}
+#imgArea img:active {box-shadow: none;}
 
 #imgArea div {
     width: 24%;
     position: absolute;
+    background-color: #223344;
 }
 
-#col1 {
-    left : 0px;
-}
-
-#col2 {
-    left: 25%;
-}
-
-#col3 {
-    left: 50%;
-}
-
-#col4 {
-    left: 75%;
-}
+#col1 {left : 0px;}
+#col2 {left: 25%;}
+#col3 {left: 50%;}
+#col4 {left: 75%;}
 
 /*=========== Background ============*/
 
