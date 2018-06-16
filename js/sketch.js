@@ -66,7 +66,7 @@ function searchGiphy(giphyName){
 				deleteImages();
 				for(var i = 0; i < giphys.data.length; i++){
 					addImage(giphys.data[i].title,
-							giphys.data[i].images.fixed_width_small.url,
+							giphys.data[i].images.fixed_height_small.url,
 							giphys.data[i].images.original.url);
 				}
 			}
@@ -80,7 +80,7 @@ function addRandom(giphyName, type){
 	loadJSON(url, function(giphys, status){
 		if(status === null)
 			addImage(giphys.data.title,
-				giphys.data.fixed_width_small_url,
+				giphys.data.fixed_height_small_url,
 				giphys.data.image_original_url);
 	});
 }
@@ -134,5 +134,7 @@ window.onload = function(){
 	imgArea = document.getElementById('imgArea');
 	imgArea.style.setProperty("top", Math.floor(1/15*h+10)+"px");
 
-	searchGiphy('love');
+	for(var i = 0; i < 25; i++){
+		addRandom("", "gifs");
+	}
 }
