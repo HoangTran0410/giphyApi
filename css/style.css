@@ -9,7 +9,6 @@
 select {
     border: none;
     padding: none;
-    height : 40px;
     border-radius: 5px;
     font-size: 16px;
     font-family: Consolas;
@@ -24,7 +23,6 @@ select:hover {
 input {
     border: none;
     padding: none;
-    height : 40px;
     text-align: center;
     font-size: 18px;
     font-family: Consolas;
@@ -39,7 +37,6 @@ input:hover {
 button {
     border: none;
     padding: none;
-    height : 40px;
     text-align: center;
     font-size: 18px;
     font-family: Consolas;
@@ -63,7 +60,6 @@ button:hover {
 
 /*=========== Image Grid ============*/
 #imgArea {
-    top: 47px;
     bottom: 0px;
     left: 0px;
     right: -17px;
