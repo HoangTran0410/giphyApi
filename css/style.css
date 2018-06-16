@@ -70,8 +70,7 @@ button:hover {
 
 img {
 	display: grid;
-    height: : 25%;
-    min-height: 150px;
+    min-height: 25%;
     float: left;
     border: none;
 	border-radius: 4px;
