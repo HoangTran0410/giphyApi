@@ -67,14 +67,14 @@
     max-height: 30%;
     width: 100%;
     float: top;
-    border: 1px solid #000;
+    border: 2px solid #000;
 	border-radius: 4px;
     opacity: 0.75;
     transition-duration: 0.1s;
 }
 
 #imgArea img:hover {
-    border: 1px solid white;
+    border: 2px solid white;
     cursor: pointer;
     opacity: 1;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
