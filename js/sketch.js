@@ -93,13 +93,13 @@ window.onload = function(){
 	var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
 	var searchArea = document.getElementById('searchArea');
-		searchArea.style.setProperty("height", Math.floor(1/15*w)+"px");
+		searchArea.style.setProperty("height", Math.floor(1/15*h)+"px");
 	var child = searchArea.children;
 	for(var i = 0; i < child.length; i++)
-		child[i].style.setProperty("height", Math.floor(1/15*w)+"px");
+		child[i].style.setProperty("height", Math.floor(1/15*h)+"px");
 
 	imgArea = document.getElementById('imgArea');
-	imgArea.style.setProperty("top", Math.floor(1/15*w+10)+"px");
+	imgArea.style.setProperty("top", Math.floor(1/15*h+10)+"px");
 }
 
 // function setBg(bg){
