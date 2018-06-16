@@ -4,6 +4,7 @@ http://api.giphy.com/v1/gifs/search?q=coding%20train&api_key=dc6zaTOxFJmzC&limit
 var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
 var links = [];
+var w,h;
 
 function loadJSON(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -32,7 +33,8 @@ function addImage(title, preview, giflink){
 		newImage.onmouseover = function(e){}
 	
 	var addTo = getMinHeightElement(["col1", "col2", "col3", "col4"]);
-	document.getElementById(addTo).appendChild(newImage);
+	document.getElementById(addTo.id).appendChild(newImage);
+
 	links.push({"image":preview, "giphy":giflink});
 }
 
@@ -46,7 +48,7 @@ function getMinHeightElement(arr){
 			result = arr[i];
 		}
 	}
-	return result;
+	return {id:result, value:min};
 }
 
 function searchType(){
@@ -72,6 +74,11 @@ function searchGiphy(giphyName){
 			}
 		}
 	});
+
+	if(searchType() == "gifs/search?")
+		for(var i = 25; i < h/20; i++){
+			addRandom(giphyName, "gifs");
+		}
 }
 
 function addRandom(giphyName, type){
@@ -105,21 +112,19 @@ function about(){
 }
 
 window.onload = function(){
+	//get width height
+	w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
 	// add more gifs when scroll
 	var imgArea = document.getElementById('imgArea');
 	imgArea.addEventListener('scroll', function(event){
 	    var element = event.target;
-	    if (element.scrollHeight - element.scrollTop >= element.clientHeight-100){
+	    if (element.scrollHeight - element.scrollTop <= element.clientHeight+h/4){
 	    	var x = document.getElementById('inputS').value;
-	    	var type = "";
-	    	if(searchType() == "gifs/search?") type = "gifs";
-	    	if(type != "") addRandom(x, type);
+	    	if(searchType() == "gifs/search?") addRandom(x, "gifs");
 	    }
 	});
-
-	//set height
-	var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
 	//home bar
 	var searchArea = document.getElementById('searchArea');
@@ -134,7 +139,8 @@ window.onload = function(){
 	imgArea = document.getElementById('imgArea');
 	imgArea.style.setProperty("top", Math.floor(1/15*h+10)+"px");
 
-	for(var i = 0; i < 25; i++){
+	console.log("load " + h/20 + " firt image");
+	for(var i = 0; i < h/20; i++){
 		addRandom("", "gifs");
 	}
 }
