@@ -6,7 +6,7 @@
     z-index: 2;
 }
 
-select {
+#searchArea select {
     border: none;
     padding: none;
     border-radius: 5px;
@@ -14,37 +14,37 @@ select {
     color : #FFFFFF;
     background-color: #222222;
 }
-select:hover {
+#searchArea select:hover {
     background-color: #444444;
     cursor: pointer;
 }
 
-input {
+#searchArea input {
     border: none;
     padding: none;
     text-align: center;
     font-family: Consolas;
-    color: #FFFFFF;
-    background-color: #111111;
+    color: #FFF;
+    background-color: #111;
 }
-input:hover {
-    background-color: #222222;   
+#searchArea input:hover {
+    background-color: #222;   
 }
 
 /*=========== Button ============*/
-button {
+#searchArea button {
     border: none;
     padding: none;
     text-align: center;
     font-family: Consolas;
-    color: #999999;
-    background-color: #111111;
+    color: #999;
+    background-color: #111;
     /*border-radius: 5px;*/
 }
 
-button:hover {
-    color: #111111;
-    background-color: #999999;
+#searchArea button:hover {
+    color: #111;
+    background-color: #999;
     cursor: pointer;
 }
 
@@ -58,16 +58,15 @@ button:hover {
 #imgArea {
     bottom: 0px;
     left: 0px;
-    right: -17px;
+    right: 0px;
     position: absolute;
-    background-color: #222222;
+    background-color: #222;
     overflow-y: scroll;
 }
 
-img {
-	display: grid;
-    min-height: 25%;
-    float: left;
+#imgArea img {
+    min-width: 100%;
+    float: top;
     border: none;
 	border-radius: 4px;
     opacity: 0.65;
@@ -75,27 +74,70 @@ img {
     transform: scale(0.9);
 }
 
-img:hover {
+#imgArea img:hover {
+    border: 1px solid white;
+    cursor: pointer;
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
 }
 
-img:active {
+#imgArea img:active {
 	box-shadow: none;
+}
+
+#imgArea div {
+    width: 24%;
+    position: absolute;
+}
+
+#col1 {
+    left : 0px;
+}
+
+#col2 {
+    left: 25%;
+}
+
+#col3 {
+    left: 50%;
+}
+
+#col4 {
+    left: 75%;
 }
 
 /*=========== Background ============*/
 
 body {
-    background-color: #000000;
+    background-color: #000;
 }
 
-html {
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #444; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #666; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/*html {
     overflow: scroll;
     overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
-}
+    width: 0px; 
+    background: transparent;
+}*/
