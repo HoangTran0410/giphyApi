@@ -95,8 +95,10 @@ window.onload = function(){
 	var searchArea = document.getElementById('searchArea');
 		searchArea.style.setProperty("height", Math.floor(1/15*h)+"px");
 	var child = searchArea.children;
-	for(var i = 0; i < child.length; i++)
+	for(var i = 0; i < child.length; i++){
+		child[i].style.setProperty("font-size", Math.floor(1/15*h/2.1)+"px");
 		child[i].style.setProperty("height", Math.floor(1/15*h)+"px");
+	}
 
 	imgArea = document.getElementById('imgArea');
 	imgArea.style.setProperty("top", Math.floor(1/15*h+10)+"px");
