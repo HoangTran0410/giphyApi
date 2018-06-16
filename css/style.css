@@ -25,11 +25,9 @@
     text-align: center;
     font-family: Consolas;
     color: #FFF;
-    background-color: #111;
+    background-color: #222;
 }
-#searchArea input:hover {
-    background-color: #222;   
-}
+#searchArea input:hover {background-color: #444;}
 
 /*=========== Button ============*/
 #searchArea button {
@@ -39,7 +37,6 @@
     font-family: Consolas;
     color: #999;
     background-color: #111;
-    /*border-radius: 5px;*/
 }
 
 #searchArea button:hover {
@@ -60,25 +57,26 @@
     left: 0px;
     right: 0px;
     position: absolute;
-    background-color: #222;
+    background-color: #000;
     overflow-y: scroll;
 }
 
 #imgArea img {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    max-height: 30%;
     width: 100%;
     float: top;
-    border: none;
+    border: 1px solid #000;
 	border-radius: 4px;
-    opacity: 0.65;
+    opacity: 0.75;
     transition-duration: 0.1s;
-    transform: scale(0.9);
 }
 
 #imgArea img:hover {
     border: 1px solid white;
     cursor: pointer;
     opacity: 1;
-    transform: scale(1);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
 }
 
