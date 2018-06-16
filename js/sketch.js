@@ -60,7 +60,9 @@ function addRandom(giphyName, type){
 
 function changeImage(){
 	var x = document.getElementById('inputS').value;
-	if(x != "") searchGiphy(x);
+	if((x != ""&&searchType()!="gifs/trending?"&&searchType()!="stickers/trending?")
+		|| searchType()=="gifs/trending?"||searchType()=="stickers/trending?") 
+		searchGiphy(x);
 }
 
 function deleteImage(){
