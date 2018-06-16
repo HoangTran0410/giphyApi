@@ -61,6 +61,16 @@
     overflow-y: scroll;
 }
 
+#imgArea div {
+    width: 24%;
+    position: absolute;
+}
+
+#col1 {left : 0px;}
+#col2 {left: 25%;}
+#col3 {left: 50%;}
+#col4 {left: 75%;}
+
 #imgArea img {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -81,16 +91,6 @@
 }
 
 #imgArea img:active {box-shadow: none;}
-
-#imgArea div {
-    width: 24%;
-    position: absolute;
-}
-
-#col1 {left : 0px;}
-#col2 {left: 25%;}
-#col3 {left: 50%;}
-#col4 {left: 75%;}
 
 /*=========== Background ============*/
 
