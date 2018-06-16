@@ -10,7 +10,6 @@ select {
     border: none;
     padding: none;
     border-radius: 5px;
-    font-size: 16px;
     font-family: Consolas;
     color : #FFFFFF;
     background-color: #222222;
@@ -24,7 +23,6 @@ input {
     border: none;
     padding: none;
     text-align: center;
-    font-size: 18px;
     font-family: Consolas;
     color: #FFFFFF;
     background-color: #111111;
@@ -38,7 +36,6 @@ button {
     border: none;
     padding: none;
     text-align: center;
-    font-size: 18px;
     font-family: Consolas;
     color: #999999;
     background-color: #111111;
@@ -52,7 +49,6 @@ button:hover {
 }
 
 #aboutBut {
-    font-size: 16px;
     position: fixed;
     right: 5px;
     top: 5px;
