@@ -4,7 +4,6 @@ http://api.giphy.com/v1/gifs/search?q=coding%20train&api_key=dc6zaTOxFJmzC&limit
 var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
 var links = [];
-var w,h;
 
 function loadJSON(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -21,21 +20,33 @@ function loadJSON(url, callback) {
     xhr.send();
 };
 
-function addImage(title, preview, giflink){
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function addImage(title, gifSmall, gifFull, ratio_WidthHeight){
+	var imgHeight = 0.24*window_WidthHeight().width*ratio_WidthHeight+"px";
 	var newImage = document.createElement("IMG");
-		newImage.src = preview;
+		newImage.src = gifSmall;
 		newImage.title = title;
 		newImage.textContent = links.length;
+		newImage.style.height = imgHeight;
+		newImage.style.backgroundColor = getRandomColor();
 		newImage.onclick = function(e){
-			var url = links[e.path[0].textContent].giphy;
+			var url = links[e.path[0].textContent].full;
 			window.open(url);
 		};
-		newImage.onmouseover = function(e){}
 	
 	var addTo = getMinHeightElement(["col1", "col2", "col3", "col4"]);
 	document.getElementById(addTo.id).appendChild(newImage);
 
-	links.push({"image":preview, "giphy":giflink});
+	links.push({"small":gifSmall, "full":gifFull});
+	console.log(links.length);
 }
 
 function getMinHeightElement(arr){
@@ -69,14 +80,16 @@ function searchGiphy(giphyName){
 				for(var i = 0; i < giphys.data.length; i++){
 					addImage(giphys.data[i].title,
 							giphys.data[i].images.fixed_height_small.url,
-							giphys.data[i].images.original.url);
+							giphys.data[i].images.original.url,
+							giphys.data[i].images.fixed_height_small.height/giphys.data[i].images.fixed_height_small.width
+							);
 				}
 			}
 		}
 	});
 
 	if(searchType() == "gifs/search?")
-		for(var i = 25; i < h/20; i++){
+		for(var i = 25; i < window_WidthHeight().height/20; i++){
 			addRandom(giphyName, "gifs");
 		}
 }
@@ -87,8 +100,10 @@ function addRandom(giphyName, type){
 	loadJSON(url, function(giphys, status){
 		if(status === null)
 			addImage(giphys.data.title,
-				giphys.data.fixed_height_small_url,
-				giphys.data.image_original_url);
+				giphys.data.images.fixed_height_small.url,
+				giphys.data.images.original.url,
+				giphys.data.images.fixed_height_small.height/giphys.data.images.fixed_height_small.width
+				);
 	});
 }
 
@@ -100,6 +115,7 @@ function changeImage(){
 }
 
 function deleteImages(){
+	console.clear();
 	links = [];
 	var imas = document.getElementsByTagName('img');
 	for(var i = imas.length-1; i >= 0 ; i--){
@@ -111,10 +127,15 @@ function about(){
 	window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');
 }
 
+function window_WidthHeight(){
+	var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+	return {"width":w, "height":h};
+}
+
 window.onload = function(){
-	//get width height
-	w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+	var w = window_WidthHeight().width;
+	var h = window_WidthHeight().height;
 
 	// add more gifs when scroll
 	var imgArea = document.getElementById('imgArea');
@@ -127,17 +148,18 @@ window.onload = function(){
 	});
 
 	//home bar
+	var heightBar = Math.max(Math.floor(1/15*h), 30);
 	var searchArea = document.getElementById('searchArea');
-		searchArea.style.setProperty("height", Math.floor(1/15*h)+"px");
+		searchArea.style.setProperty("height", heightBar+"px");
 	var child = searchArea.children;
 	for(var i = 0; i < child.length; i++){
 		child[i].style.setProperty("font-size", Math.max(16, Math.floor(1/40*w))+"px");
-		child[i].style.setProperty("height", Math.floor(1/15*h)+"px");
+		child[i].style.setProperty("height", heightBar+"px");
 	}
 
 	//image bar
 	imgArea = document.getElementById('imgArea');
-	imgArea.style.setProperty("top", Math.floor(1/15*h+10)+"px");
+	imgArea.style.setProperty("top", heightBar+10+"px");
 
 	console.log("load " + h/20 + " firt image");
 	for(var i = 0; i < h/20; i++){
