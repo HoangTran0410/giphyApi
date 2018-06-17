@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 
-#searchArea input {
+#searchArea #inputS {
     border: none;
     padding: none;
     text-align: center;
@@ -27,9 +27,11 @@
     color: #FFF;
     background-color: #222;
 }
-#searchArea input:hover {background-color: #444;}
+#searchArea #inputS:hover {background-color: #444;}
 
 /*=========== Button ============*/
+
+
 #searchArea button {
     border: none;
     padding: none;
@@ -89,37 +91,21 @@
 
 #imgArea img:active {box-shadow: none;}
 
-/*=========== Background ============*/
+/*=========== Background + ScrollBar ============*/
 
 body {
     background-color: #000;
 }
 
-/* width */
 ::-webkit-scrollbar {
     width: 10px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
     background: #444; 
 }
- 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #666; 
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #999;
 }
-
-/*html {
-    overflow: scroll;
-    overflow-x: hidden;
-}
-::-webkit-scrollbar {
-    width: 0px; 
-    background: transparent;
-}*/
