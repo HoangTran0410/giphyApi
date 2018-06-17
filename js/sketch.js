@@ -3,6 +3,7 @@ http://api.giphy.com/v1/gifs/search?q=coding%20train&api_key=dc6zaTOxFJmzC&limit
 */
 var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
+var playOrPause = 'Playing';
 var links = [];
 
 function loadJSON(url, callback) {
@@ -29,23 +30,36 @@ function getRandomColor() {
   return color;
 }
 
-function addImage(title, gifSmall, gifFull, ratio_WidthHeight){
+function addImage(title, gifImage, gifSmall, gifFull, ratio_WidthHeight){
 	var imgHeight = 0.24*window_WidthHeight().width*ratio_WidthHeight+"px";
 	var newImage = document.createElement("IMG");
-		newImage.src = gifSmall;
+		newImage.src = (playOrPause=='Playing')?gifSmall:gifImage;
 		newImage.title = title;
 		newImage.textContent = links.length;
 		newImage.style.height = imgHeight;
-		newImage.style.backgroundColor = getRandomColor();
+		if(searchType() == "gifs/search?" || searchType() == "gifs/trending?")
+			newImage.style.backgroundColor = getRandomColor();
+		else newImage.style.backgroundColor = "transparent";
 		newImage.onclick = function(e){
 			var url = links[e.path[0].textContent].full;
 			window.open(url);
 		};
+		newImage.onmouseover = function(e){
+			var url = links[e.path[0].textContent].small;
+			if(playOrPause == 'Paused')
+				e.path[0].src = url;
+		};
+		newImage.onmouseout = function(e){
+			var url = links[e.path[0].textContent].image;
+			if(playOrPause == 'Paused')
+				e.path[0].src = url;
+		}
+
 	
 	var addTo = getMinHeightElement(["col1", "col2", "col3", "col4"]);
 	document.getElementById(addTo.id).appendChild(newImage);
 
-	links.push({"small":gifSmall, "full":gifFull});
+	links.push({"image":gifImage, "small":gifSmall, "full":gifFull});
 	console.log(links.length);
 }
 
@@ -79,6 +93,7 @@ function searchGiphy(giphyName){
 				deleteImages();
 				for(var i = 0; i < giphys.data.length; i++){
 					addImage(giphys.data[i].title,
+						giphys.data[i].images.fixed_height_still.url,
 							giphys.data[i].images.fixed_height_small.url,
 							giphys.data[i].images.original.url,
 							giphys.data[i].images.fixed_height_small.height/giphys.data[i].images.fixed_height_small.width
@@ -100,6 +115,7 @@ function addRandom(giphyName, type){
 	loadJSON(url, function(giphys, status){
 		if(status === null)
 			addImage(giphys.data.title,
+				giphys.data.images.fixed_height_still.url,
 				giphys.data.images.fixed_height_small.url,
 				giphys.data.images.original.url,
 				giphys.data.images.fixed_height_small.height/giphys.data.images.fixed_height_small.width
@@ -121,6 +137,17 @@ function deleteImages(){
 	for(var i = imas.length-1; i >= 0 ; i--){
 		imas[i].parentNode.removeChild(imas[i]);
 	}
+}
+
+function playPauseImage(){
+	playOrPause = (playOrPause=="Paused")?"Playing":"Paused";
+	var imgs = document.getElementsByTagName('img');
+	for(var i = 0; i < imgs.length; i++){
+		var linksI = links[imgs[i].textContent];
+		imgs[i].src = (playOrPause=='Playing')?linksI.small:linksI.image;
+	}
+	var but = document.getElementById('playPauseBut');
+	but.textContent = ""+playOrPause;
 }
 
 function about(){
