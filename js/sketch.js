@@ -5,6 +5,8 @@ var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
 var playOrPause = 'Playing';
 var links = [];
+var temp;
+
 
 function loadJSON(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -40,22 +42,7 @@ function addImage(title, gifImage, gifSmall, gifFull, ratio_WidthHeight){
 		if(searchType() == "gifs/search?" || searchType() == "gifs/trending?")
 			newImage.style.backgroundColor = getRandomColor();
 		else newImage.style.backgroundColor = "transparent";
-		newImage.onclick = function(e){
-			var url = links[e.path[0].textContent].full;
-			window.open(url);
-		};
-		newImage.onmouseover = function(e){
-			var url = links[e.path[0].textContent].small;
-			if(playOrPause == 'Paused')
-				e.path[0].src = url;
-		};
-		newImage.onmouseout = function(e){
-			var url = links[e.path[0].textContent].image;
-			if(playOrPause == 'Paused')
-				e.path[0].src = url;
-		}
 
-	
 	var addTo = getMinHeightElement(["col1", "col2", "col3", "col4"]);
 	document.getElementById(addTo.id).appendChild(newImage);
 
@@ -68,10 +55,7 @@ function getMinHeightElement(arr){
 	var result = arr[0];
 	for(var i = 1; i < arr.length; i++){
 		var h = document.getElementById(arr[i]).offsetHeight;
-		if(h < min) {
-			min = h;
-			result = arr[i];
-		}
+		if(h < min) {min = h; result = arr[i];}
 	}
 	return {id:result, value:min};
 }
@@ -142,16 +126,12 @@ function deleteImages(){
 function playPauseImage(){
 	playOrPause = (playOrPause=="Paused")?"Playing":"Paused";
 	var imgs = document.getElementsByTagName('img');
-	for(var i = 0; i < imgs.length; i++){
+	for(var i = imgs.length-1; i >= 0; i--){
 		var linksI = links[imgs[i].textContent];
 		imgs[i].src = (playOrPause=='Playing')?linksI.small:linksI.image;
 	}
 	var but = document.getElementById('playPauseBut');
 	but.textContent = ""+playOrPause;
-}
-
-function about(){
-	window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');
 }
 
 function window_WidthHeight(){
@@ -165,31 +145,62 @@ window.onload = function(){
 	var h = window_WidthHeight().height;
 
 	// add more gifs when scroll
-	var imgArea = document.getElementById('imgArea');
-	imgArea.addEventListener('scroll', function(event){
-	    var element = event.target;
-	    if (element.scrollHeight - element.scrollTop <= element.clientHeight+h/4){
-	    	var x = document.getElementById('inputS').value;
-	    	if(searchType() == "gifs/search?") addRandom(x, "gifs");
-	    }
-	});
+		document.getElementById('imgArea')
+			.addEventListener('scroll', (e) => {
+			    var ele = e.target;
+			    if (ele.scrollHeight - ele.scrollTop <= ele.clientHeight+h/4){
+			    	var x = document.getElementById('inputS').value;
+			    	if(searchType() == "gifs/search?") addRandom(x, "gifs");
+			    }});
 
 	//home bar
-	var heightBar = Math.max(Math.floor(1/15*h), 30);
-	var searchArea = document.getElementById('searchArea');
-		searchArea.style.setProperty("height", heightBar+"px");
-	var child = searchArea.children;
-	for(var i = 0; i < child.length; i++){
-		child[i].style.setProperty("font-size", Math.max(16, Math.floor(1/40*w))+"px");
-		child[i].style.setProperty("height", heightBar+"px");
-	}
+		//display
+		var heightBar = Math.max(Math.floor(1/15*h), 30);
+		var searchArea = document.getElementById('searchArea');
+			searchArea.style.setProperty("height", heightBar+"px");
+		var child = searchArea.children;
+		for(var i = 0; i < child.length; i++){
+			child[i].style.setProperty("font-size", Math.max(16, Math.floor(1/40*w))+"px");
+			child[i].style.setProperty("height", heightBar+"px");
+		}
 
-	//image bar
-	imgArea = document.getElementById('imgArea');
-	imgArea.style.setProperty("top", heightBar+10+"px");
+		//event
+		document.getElementById('inputS').addEventListener('change',(e)=>changeImage());
+		document.getElementById('sType').addEventListener('change',(e)=>changeImage());
+		document.getElementById('searchBut').addEventListener('click',(e)=>changeImage());
+		document.getElementById('playPauseBut').addEventListener('click',(e)=>playPauseImage());
+		document.getElementById('shareFb').addEventListener('click',(e)=>{
+			window.open('//facebook.com/sharer/sharer.php?u='+e.target.src);});
+		document.getElementById('shareTwitter').addEventListener('click',(e)=>{
+			window.open('//twitter.com/intent/tweet?text='+e.target.src);});
+		document.getElementById('aboutBut').addEventListener('click',(e)=>{
+			window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');});
 
-	console.log("load " + h/20 + " firt image");
-	for(var i = 0; i < h/20; i++){
-		addRandom("", "gifs");
-	}
+	//image grid
+		var imgArea = document.getElementById('imgArea');
+			imgArea.style.setProperty("top", heightBar+10+"px");
+			imgArea.addEventListener('mouseover', (e) => {
+				if(e.target.matches('img')){
+					var share = document.getElementById('shareFb');
+						share.style.left = e.target.x+window_WidthHeight().width*24/100-30+"px";
+						share.style.top = e.target.y+"px";
+						share.src = links[e.target.textContent].full;
+
+						share = document.getElementById('shareTwitter');
+						share.style.left = e.target.x+window_WidthHeight().width*24/100-60+"px";
+						share.style.top = e.target.y+"px";
+						share.src = links[e.target.textContent].full;						
+
+					if(playOrPause == 'Paused')
+						e.target.src = links[e.target.textContent].small;
+				}});
+			imgArea.addEventListener('mouseout', (e) => {
+				if(e.target.matches('img') && playOrPause == 'Paused'){
+					e.target.src = links[e.target.textContent].image;
+				}});
+
+		console.log("load " + h/20 + " firt image");
+		for(var i = 0; i < h/20; i++){
+			addRandom("", "gifs");
+		}
 }
