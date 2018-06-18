@@ -7,7 +7,6 @@ var playOrPause = 'Playing';
 var links = [];
 var temp;
 
-
 function loadJSON(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -140,6 +139,27 @@ function window_WidthHeight(){
 	return {"width":w, "height":h};
 }
 
+function copyToClipboard(str){
+	// https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
+	var el = document.createElement('textarea');
+	el.value = str;
+	el.setAttribute('readonly', '');
+	el.style.position = 'absolute';
+	el.style.left = '-9999px';
+	document.body.appendChild(el);
+	var selected =
+	document.getSelection().rangeCount > 0
+	  ? document.getSelection().getRangeAt(0)
+	  : false;
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+	if (selected) {
+	document.getSelection().removeAllRanges();
+	document.getSelection().addRange(selected);
+  }
+}
+
 window.onload = function(){
 	var w = window_WidthHeight().width;
 	var h = window_WidthHeight().height;
@@ -173,6 +193,8 @@ window.onload = function(){
 			window.open('//facebook.com/sharer/sharer.php?u='+e.target.src);});
 		document.getElementById('shareTwitter').addEventListener('click',(e)=>{
 			window.open('//twitter.com/intent/tweet?text='+e.target.src);});
+		document.getElementById('shareLink').addEventListener('click',(e)=>{
+			copyToClipboard(e.target.src);});
 		document.getElementById('aboutBut').addEventListener('click',(e)=>{
 			window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');});
 
@@ -181,15 +203,12 @@ window.onload = function(){
 			imgArea.style.setProperty("top", heightBar+10+"px");
 			imgArea.addEventListener('mouseover', (e) => {
 				if(e.target.matches('img')){
-					var share = document.getElementById('shareFb');
-						share.style.left = e.target.x+window_WidthHeight().width*24/100-30+"px";
-						share.style.top = e.target.y+"px";
-						share.src = links[e.target.textContent].full;
-
-						share = document.getElementById('shareTwitter');
-						share.style.left = e.target.x+window_WidthHeight().width*24/100-60+"px";
-						share.style.top = e.target.y+"px";
-						share.src = links[e.target.textContent].full;						
+					var eles = document.getElementsByTagName('a');
+					for(var i = 0; i < eles.length; i++){
+						eles[i].style.top = e.target.y+"px";
+						eles[i].style.left = e.target.x+window_WidthHeight().width*24/100-30*(3-i)+"px";
+						eles[i].src = links[e.target.textContent].full;
+					}					
 
 					if(playOrPause == 'Paused')
 						e.target.src = links[e.target.textContent].small;
