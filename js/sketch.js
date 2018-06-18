@@ -159,6 +159,17 @@ function copyToClipboard(str){
   }
 }
 
+function fbShare(url, title, descr, image, winWidth, winHeight) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + 
+    	'&p[summary]=' + descr + 
+    	'&p[url]=' + url + 
+    	'sharer', 
+    	'top=' + winTop + ',left=' + winLeft + 
+    	',toolbar=0,status=0,width='+winWidth+',height='+winHeight);
+}
+
 window.onload = function(){
 	var w = window_WidthHeight().width;
 	var h = window_WidthHeight().height;
@@ -188,18 +199,24 @@ window.onload = function(){
 		document.getElementById('sType').addEventListener('change',(e)=>changeImage());
 		document.getElementById('searchBut').addEventListener('click',(e)=>changeImage());
 		document.getElementById('playPauseBut').addEventListener('click',(e)=>playPauseImage());
+		
 		document.getElementById('shareFb').addEventListener('click',(e)=>{
-			window.open('//facebook.com/sharer/sharer.php?u='+e.target.src);});
+			window.open('//facebook.com/sharer/sharer.php?u='+e.target.src, "pop", "width=600, height=400");});
+		
 		document.getElementById('shareTwitter').addEventListener('click',(e)=>{
-			window.open('//twitter.com/intent/tweet?text='+e.target.src);});
+			window.open('//twitter.com/intent/tweet?text='+e.target.src, "pop", "width=600, height=400");});
+		
 		document.getElementById('shareLink').addEventListener('click',(e)=>{
 			copyToClipboard(e.target.src);});
+		
 		document.getElementById('aboutBut').addEventListener('click',(e)=>{
 			window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');});
 
 	//image grid
 		var imgArea = document.getElementById('imgArea');
-			imgArea.style.setProperty("top", heightBar+10+"px");
+			imgArea.style.setProperty("top", heightBar+10+"px"); // display
+
+			//event
 			imgArea.addEventListener('mouseover', (e) => {
 				if(e.target.matches('img')){
 					var eles = document.getElementsByTagName('a');
@@ -214,9 +231,13 @@ window.onload = function(){
 				}});
 			imgArea.addEventListener('mouseout', (e) => {
 				if(e.target.matches('img') && playOrPause == 'Paused'){
-					e.target.src = links[e.target.textContent].image;
-				}});
+					e.target.src = links[e.target.textContent].image;}});
 
+			imgArea.addEventListener('click', (e) => {
+				if(e.target.matches('img')){
+					window.open(links[e.target.textContent].full, "pop", "width=600, height=400");}});
+
+	//add firt random gif
 		console.log("load " + h/20 + " firt image");
 		for(var i = 0; i < h/20; i++){
 			addRandom("", "gifs");
