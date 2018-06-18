@@ -3,7 +3,6 @@
     top: 5px;
     left: 0px;
     position: fixed;
-    z-index: 2;
 }
 
 #searchArea select {
@@ -30,8 +29,6 @@
 #searchArea #inputS:hover {background-color: #444;}
 
 /*=========== Button ============*/
-
-
 #searchArea button {
     border: none;
     padding: none;
@@ -91,21 +88,28 @@
 
 #imgArea img:active {box-shadow: none;}
 
+#imgArea a {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    opacity: 0.5;
+    border: none;
+    border-radius: 5px;
+    background-position: left top;
+    background-size: 30px 30px;
+}
+
+#imgArea a:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#shareFb {background-image: url('https://png.icons8.com/color/50/000000/facebook.png');}
+#shareTwitter {background-image: url('https://png.icons8.com/color/50/000000/twitter-squared.png');}
+
 /*=========== Background + ScrollBar ============*/
-
-body {
-    background-color: #000;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #444; 
-}
-::-webkit-scrollbar-thumb {
-    background: #666; 
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #999;
-}
+body {background-color: #000;}
+::-webkit-scrollbar {width: 10px;}
+::-webkit-scrollbar-track {background: #444;}
+::-webkit-scrollbar-thumb {background: #666;}
+::-webkit-scrollbar-thumb:hover {background: #999;}
