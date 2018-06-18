@@ -76,18 +76,15 @@
     float: top;
     border: 2px solid #000;
 	border-radius: 4px;
-    opacity: 0.75;
     transition-duration: 0.1s;
+    opacity: 0.75;
 }
 
 #imgArea img:hover {
     border: 2px solid white;
     cursor: pointer;
     opacity: 1;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.45), 0 17px 50px 0 rgba(0,0,0,0.45);
 }
-
-#imgArea img:active {box-shadow: none;}
 
 #imgArea a {
     z-index: 1;
@@ -115,6 +112,28 @@
 #shareTwitter {background-image: url('https://png.icons8.com/color/50/000000/twitter-squared.png');}
 #shareLink {background-image: url('https://png.icons8.com/flat_round/50/000000/link.png');}
 
+#imgArea a:active .tooltip {
+    visibility: visible;
+    transition-duration: opacity 2s;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 14px;
+    font-family: Consolas;
+    
+    position: absolute;
+    z-index: 1;
+    width: 80px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px;
+}
 /*=========== Background + ScrollBar ============*/
 body {background-color: #000;}
 ::-webkit-scrollbar {width: 10px;}
