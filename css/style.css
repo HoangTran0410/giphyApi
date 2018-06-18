@@ -3,6 +3,7 @@
     top: 5px;
     left: 0px;
     position: fixed;
+    z-index: 2;
 }
 
 #searchArea select {
@@ -89,23 +90,30 @@
 #imgArea img:active {box-shadow: none;}
 
 #imgArea a {
+    z-index: 1;
     position: fixed;
     width: 30px;
     height: 30px;
-    opacity: 0.5;
+    opacity: 0.35;
     border: none;
     border-radius: 5px;
     background-position: left top;
     background-size: 30px 30px;
+    transition-duration: 0.3s;
 }
-
 #imgArea a:hover {
+    transform: scale(1.45);
     opacity: 1;
     cursor: pointer;
+}
+#imgArea a:active {
+    transition-duration: 0.1s;
+    transform: scale(1);
 }
 
 #shareFb {background-image: url('https://png.icons8.com/color/50/000000/facebook.png');}
 #shareTwitter {background-image: url('https://png.icons8.com/color/50/000000/twitter-squared.png');}
+#shareLink {background-image: url('https://png.icons8.com/flat_round/50/000000/link.png');}
 
 /*=========== Background + ScrollBar ============*/
 body {background-color: #000;}
