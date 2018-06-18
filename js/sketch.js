@@ -5,7 +5,6 @@ var api = "https://api.giphy.com/v1/";
 var apiKey = "&api_key=dc6zaTOxFJmzC";
 var playOrPause = 'Playing';
 var links = [];
-var temp;
 
 function loadJSON(url, callback) {
     var xhr = new XMLHttpRequest();
