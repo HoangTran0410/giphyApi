@@ -12,16 +12,17 @@
 
 <body>
 	<div id="searchArea">
-		<select id="sType" title="Change type search" onchange="changeImage()">
+		<select id="sType" title="Change type search">
 			<option value="gifs/search?">Search Gifs</option>
 		    <option value="stickers/search?">Search Stickers</option>
 		    <option value="gifs/trending?">Trending Gifs</option>
 		    <option value="stickers/trending?">Trending Stickers</option>
 		</select>
-		<input id="inputS" onchange="changeImage()" type="search" placeholder="Search Giphy">
-		<button id="searchBut" onclick="changeImage()">Search</button>
-		<button id="playPauseBut" onclick="playPauseImage()">Playing</button>
-		<button id="aboutBut" title="My Facebook" onclick="about()">About Me</button>
+		<input id="inputS" type="search" placeholder="Search Giphy">
+		<button id="searchBut">Search</button>
+
+		<button id="playPauseBut">Playing</button>
+		<button id="aboutBut" title="My Facebook">About Me</button>
 	</div>
 
 	<div id="imgArea">
@@ -29,11 +30,9 @@
 		<div id="col2"></div>
 		<div id="col3"></div>
 		<div id="col4"></div>
+		<a id="shareTwitter" ></a>
+		<a id="shareFb" ></a>
 	</div>
-
-<!-- 	<div id="infoImg">
-		<img id="bigImg" src="">
-	</div> -->
 
 </body>
 
