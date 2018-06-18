@@ -199,18 +199,16 @@ window.onload = function(){
 		document.getElementById('sType').addEventListener('change',(e)=>changeImage());
 		document.getElementById('searchBut').addEventListener('click',(e)=>changeImage());
 		document.getElementById('playPauseBut').addEventListener('click',(e)=>playPauseImage());
+		document.getElementById('aboutBut').addEventListener('click',(e)=>{
+			window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');});
 		
 		document.getElementById('shareFb').addEventListener('click',(e)=>{
 			window.open('//facebook.com/sharer/sharer.php?u='+e.target.src, "pop", "width=600, height=400");});
-		
 		document.getElementById('shareTwitter').addEventListener('click',(e)=>{
 			window.open('//twitter.com/intent/tweet?text='+e.target.src, "pop", "width=600, height=400");});
-		
 		document.getElementById('shareLink').addEventListener('click',(e)=>{
 			copyToClipboard(e.target.src);});
 		
-		document.getElementById('aboutBut').addEventListener('click',(e)=>{
-			window.open('https://www.facebook.com/people/Hoang-Tran/100004848287494');});
 
 	//image grid
 		var imgArea = document.getElementById('imgArea');
